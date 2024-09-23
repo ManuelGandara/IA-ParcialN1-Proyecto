@@ -169,20 +169,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boids: []
-  listFood:
-  - {fileID: 103075917}
-  - {fileID: 1264819971}
-  - {fileID: 1938419196}
-  - {fileID: 48698300}
-  - {fileID: 560831724}
-  - {fileID: 1013217784}
-  - {fileID: 78094006}
+  listFood: []
   hunter: {fileID: 0}
-  radiusDetect: 10
-  radiusSeparation: 10
-  weightCohesion: 0
-  weightAlignment: 0
-  weightSeparation: 0
+  radiusDetect: 5
+  radiusSeparation: 4
+  weightCohesion: 2
+  weightAlignment: 2
+  weightSeparation: 2
 --- !u!4 &4109760
 Transform:
   m_ObjectHideFlags: 0
@@ -2121,7 +2114,7 @@ Transform:
   m_GameObject: {fileID: 1073620176}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.05, y: 0, z: -12.52}
+  m_LocalPosition: {x: -10, y: 0, z: -9.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3868,7 +3861,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocityMax: 0.5
-  speedMax: 1
+  speedMax: 0.8
   nodeInitial: {fileID: 0}
   velocityActual: {x: 0, y: 0, z: 0}
 --- !u!135 &2012519699
