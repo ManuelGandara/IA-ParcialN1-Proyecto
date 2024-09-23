@@ -20,6 +20,7 @@ public class Food : MonoBehaviour
             {
                 GameManager.instance.listFood.Remove(this);
                 Destroy(this.gameObject);
+                break;
             }
         }
     }

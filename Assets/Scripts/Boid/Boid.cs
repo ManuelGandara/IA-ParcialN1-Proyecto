@@ -7,7 +7,7 @@ public class Boid : MonoBehaviour
 {
 
     [SerializeField] public float velocityMax = 1;
-    [SerializeField] private float _speedMax = 1;
+    [SerializeField] public float speedMax = 1;
     public Node nodeInitial;
     public Vector3 velocityActual;
 
@@ -76,27 +76,25 @@ public class Boid : MonoBehaviour
     Vector3 Separate(List<Boid> boids, float radius)
     {
         Vector3 desired = Vector3.zero;
-        int count = 0;
 
         foreach (var boid in boids)
         {
-            if (Vector3.Distance(transform.position, boid.transform.position) > radius || boid == this)
+            var directional = transform.position - boid.transform.position;
+
+            if (directional.magnitude > radius || boid == this)
                 continue;
 
-            desired += boid.velocityActual;
-            count++;
+            desired += directional;
         }
-
-        if (count == 0)
-            return Vector3.zero;
-
-        desired /= count;
-
+        
+        if (desired == Vector3.zero) 
+            return desired;
+        
         desired.Normalize();
         desired *= velocityMax;
 
         var steering = desired - velocityActual;
-        steering = Vector3.ClampMagnitude(steering, _speedMax);
+        steering = Vector3.ClampMagnitude(steering, speedMax);
 
         return steering;
     }
@@ -105,6 +103,7 @@ public class Boid : MonoBehaviour
     {
         var desired = transform.position;
         int count = 0;
+
         foreach (var boid in boids)
         {
             if (Vector3.Distance(transform.position, boid.transform.position) > radius || boid == this)
@@ -124,7 +123,7 @@ public class Boid : MonoBehaviour
         desired *= velocityMax;
 
         var steering = desired - velocityActual;
-        steering = Vector3.ClampMagnitude(steering, _speedMax);
+        steering = Vector3.ClampMagnitude(steering, speedMax);
 
         return steering;
     }
@@ -155,7 +154,7 @@ public class Boid : MonoBehaviour
         desired *= velocityMax;
 
         var steering = desired - velocityActual;
-        steering = Vector3.ClampMagnitude(steering, _speedMax);
+        steering = Vector3.ClampMagnitude(steering, speedMax);
 
         return steering;
     }
@@ -184,7 +183,7 @@ public class Boid : MonoBehaviour
         desired *= velocityMax;
 
         Vector3 steering = desired - velocityActual;
-        steering = Vector3.ClampMagnitude(steering, _speedMax);
+        steering = Vector3.ClampMagnitude(steering, speedMax);
 
         return steering;
     }
@@ -202,7 +201,7 @@ public class Boid : MonoBehaviour
         desired *= velocityMax * (dist / GameManager.instance.radiusDetect);
 
         Vector3 steering = desired - velocityActual;
-        steering = Vector3.ClampMagnitude(steering, _speedMax);
+        steering = Vector3.ClampMagnitude(steering, speedMax);
 
         return steering;
     }
