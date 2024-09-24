@@ -19,7 +19,6 @@ public class GameManager : MonoBehaviour
     [Range(2, 3)]
     public float weightSeparation;
 
-
     private void Awake()
     {
         instance = this;

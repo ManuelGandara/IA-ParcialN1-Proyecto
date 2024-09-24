@@ -229,9 +229,9 @@ public class Boid : MonoBehaviour
 
     public Vector3 Evade(Hunter hunter)
     {
-        var posPre = hunter.transform.position + hunter.velocityActual;
+        var HEvade = hunter.transform.position + hunter.velocityActual;
 
-        return Flee(posPre);
+        return Flee(HEvade);
     }
 
     Vector3 Flee(Vector3 target)
@@ -241,7 +241,8 @@ public class Boid : MonoBehaviour
     public void Die()
     {
         GameManager.instance.boids.Remove(this);
-        Destroy(this);
+        Destroy(gameObject);
+        Debug.Log("Me comi una ovejita");
     }
 
     private void OnDrawGizmos()

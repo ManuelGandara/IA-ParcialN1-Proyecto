@@ -85,18 +85,18 @@ public class Hunter : MonoBehaviour
 
     public Vector3 Pursuit(Boid target)
     {
-        var posPre = target.transform.position + target.velocityActual;
-        return Seek(posPre);
+        var PBoid = target.transform.position + target.velocityActual;
+        return Seek(PBoid);
     }
 
     public Vector3 Seek(Vector3 target)
     {
         Vector3 desired = target - transform.position;
         desired.Normalize();
-        desired *= velocityMax;  // Velocidad máxima permitida
+        desired *= velocityMax;
 
         Vector3 steering = desired - velocityActual;
-        steering = Vector3.ClampMagnitude(steering, speedMax);  // Limita la aceleración
+        steering = Vector3.ClampMagnitude(steering, speedMax);
 
         Debug.Log("Seeking towards: " + target + " with desired velocity: " + steering);
 
